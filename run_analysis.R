@@ -151,8 +151,8 @@ final_data <- summarize(activity, meanXaxisBodyAccelerometerMean = mean(xaxisBod
                                   meanFreqBodyAccelerometerJerkMagnigudeStd = mean(freqBodyAccelerometerJerkMagnitudeStd),
                                   meanFreqBodyGyroscopeMagnitudeMean = mean(freqBodyGyroscopeMagnitudeMean),
                                   meanFreqBodyGyroscopeMagnitudeStd = mean(freqBodyGyroscopeMagnitudeStd),
-                                  meanFreqBodyGyroscopeJerkMagnitudeMean = mean(freqBodyGyroscopejerkMagnitudeMean),
-                                  meanFreqBodyGyroscopeJerkMagnitudeStd = mean(freqBodyGyroscopejerkMagnitudeStd))
+                                  meanFreqBodyGyroscopeJerkMagnitudeMean = mean(freqBodyGyroscopeJerkMagnitudeMean),
+                                  meanFreqBodyGyroscopeJerkMagnitudeStd = mean(freqBodyGyroscopeJerkMagnitudeStd))
 
 ## write text output 
 write.table(final_data, file = "./courseproject.txt", row.name=FALSE)
