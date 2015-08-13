@@ -4,6 +4,7 @@
 [1] Subject<br />
 Subject who performed the activity. Its range is from 1 to 30.<br />
 [2] Activity<br />
+Types of activities tracked. Includes: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, and LAYING. <br. />
 [3] meanXaxisBodyAccelerometerMean<br />
 [4] meanYaxisBodyAccelerometerMean<br />
 [5] meanZaxisBodyAccelerometerMean<br />
@@ -17,25 +18,25 @@ Subject who performed the activity. Its range is from 1 to 30.<br />
 [13] meanYaxisGravityAccelerometerStd <br />
 [14] meanZaxisGravityAccelerometerStd <br />
 [15] meanXaxisBodyAccelerometerJerkMean <br />
-[16] meanYaxisBodyAccelerometerJerkMean                                  
-[17] meanZaxisBodyAccelerometerJerkMean                                   
-[18] meanXxisBodyAccelerometerJerkStd                                   
-[19] meanYaxisBodyAccelerometerJerkStd                                   
-[20] meanZaxisBodyAccelerometerJerkStd                                  
-[21] meanXaxisBodyGyroscopeMean                                   
-[22] meanYaxisBodyGyroscopeMmean                                  
-[23] meanZaxisBodyGyroscopeMean                                   
-[24] meanXaxisBodyGyrosopeStd                                   
-[25] meanYaxisBodyGyrocopeStd                                   
-[26] meanZaxisBodyGyroscopeStd 
-[27] meanXaxisBodyGyroscopeJerkMean                                   
-[28] meanYaxisBodyGyroscopeJerkMean                                   
-[29] meanZaxisBodyGyroscopeJerkMean                                  
-[30] meanXaxisBodyGyroscopeJerkStd                                   
-[31] meanYaxisBodyGyroscopeJerkStd                                  
-[32] meanZaxisBodyGyroscopeJerkStd                                   
-[33] meanBodyAccelerometermag_mean                                   
-[34] meanBodyAccelerometermag_std                                   
+[16] meanYaxisBodyAccelerometerJerkMean <br /> 
+[17] meanZaxisBodyAccelerometerJerkMean  <br />    
+[18] meanXxisBodyAccelerometerJerkStd <br />
+[19] meanYaxisBodyAccelerometerJerkStd <br /> 
+[20] meanZaxisBodyAccelerometerJerkStd <br />
+[21] meanXaxisBodyGyroscopeMean <br /> 
+[22] meanYaxisBodyGyroscopeMmean <br />
+[23] meanZaxisBodyGyroscopeMean  <br />
+[24] meanXaxisBodyGyrosopeStd <br />  
+[25] meanYaxisBodyGyrocopeStd  <br />  
+[26] meanZaxisBodyGyroscopeStd <br />
+[27] meanXaxisBodyGyroscopeJerkMean <br />
+[28] meanYaxisBodyGyroscopeJerkMean <br />
+[29] meanZaxisBodyGyroscopeJerkMean  <br /> 
+[30] meanXaxisBodyGyroscopeJerkStd  <br />
+[31] meanYaxisBodyGyroscopeJerkStd  <br />
+[32] meanZaxisBodyGyroscopeJerkStd  <br />
+[33] meanBodyAccelerometermag_mean <br />
+[34] meanBodyAccelerometermag_std <br />
 [35] meanGravityAccelerometerMagnitudeMean                                   
 [36] meanGravityAccelerometerMagnitudeStd                                   
 [37] meanBodyAccelerometerJerkMagnitudeMean                                   
