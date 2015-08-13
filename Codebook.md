@@ -4,7 +4,7 @@
 [1] Subject<br />
 Subject who performed the activity. Its range is from 1 to 30.<br />
 [2] Activity<br />
-Types of activities tracked. Includes: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, and LAYING. <br. />
+Types of activities tracked. Includes: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, and LAYING.<br />
 [3] meanXaxisBodyAccelerometerMean<br />
 [4] meanYaxisBodyAccelerometerMean<br />
 [5] meanZaxisBodyAccelerometerMean<br />
