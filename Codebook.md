@@ -1,22 +1,22 @@
 # Code Book
 ## Column number, Variable Name, and Variable Descriptions
 
-[1] Subject
-Subject who performed the activity. Its range is from 1 to 30.
-[2] Activity
-[3] meanXaxisBodyAccelerometerMean
-[4] meanYaxisBodyAccelerometerMean  
-[5] meanZaxisBodyAccelerometerMean
-[6] meanXaxisBodyAccelerometerStd
-[7] meanYaxisBodyAccelerometerStd
-[8] meanZaxisBodyAccelerometerStd                                   
-[9] meanXaxisGavityAccelerometerMean                                   
-[10] meanYaxisGravityAccelerometerMean                                   
-[11] meanZaxisGravityAccelerometerMean                                   
-[12] meanXaxisBravityAccelerometerStd                                  
-[13] meanYaxisGravityAccelerometerStd                                   
-[14] meanZaxisGravityAccelerometerStd                                   
-[15] meanXaxisBodyAccelerometerJerkMean                                   
+[1] Subject<br />
+Subject who performed the activity. Its range is from 1 to 30.<br />
+[2] Activity<br />
+[3] meanXaxisBodyAccelerometerMean<br />
+[4] meanYaxisBodyAccelerometerMean<br />
+[5] meanZaxisBodyAccelerometerMean<br />
+[6] meanXaxisBodyAccelerometerStd<br />
+[7] meanYaxisBodyAccelerometerStd<br />
+[8] meanZaxisBodyAccelerometerStd<br />
+[9] meanXaxisGavityAccelerometerMean<br />
+[10] meanYaxisGravityAccelerometerMean<br />
+[11] meanZaxisGravityAccelerometerMean<br />
+[12] meanXaxisBravityAccelerometerStd <br />
+[13] meanYaxisGravityAccelerometerStd <br />
+[14] meanZaxisGravityAccelerometerStd <br />
+[15] meanXaxisBodyAccelerometerJerkMean <br />
 [16] meanYaxisBodyAccelerometerJerkMean                                  
 [17] meanZaxisBodyAccelerometerJerkMean                                   
 [18] meanXxisBodyAccelerometerJerkStd                                   
