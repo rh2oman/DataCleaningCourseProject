@@ -163,18 +163,20 @@ Variable calculates the mean of the standard deviation of the frequency of body 
 [60] meanFreqzaxisBodyGyroscopeStd<br />
 Variable calculates the mean of the standard deviation of the frequency of body gyroscope time scores along the z axial dimension.<br />
 [61] meanFreqBodyAccelerometerMagnitudeMean<br />
-Variable calculates the mean of the mean body accelerometer magnitude scores. <br />
+Variable calculates the mean of the mean frequency of the body accelerometer magnitude scores. <br />
 [62] meanFreqBodyAccelerometerMagnitudeStd<br />
-Variable calculates the mean of the standard deviation of the body accelerometer magnitude scores. <br />
+Variable calculates the mean of the standard deviation of the frequency of the body accelerometer magnitude scores. <br />
 [63] meanFreqBodyAccelerometerJerkMagnitudeMean<br />
-Variable calculates the mean of the mean body accelerometer jerking motion magnitude scores.<br />
+Variable calculates the mean of the mean frequency of the body accelerometer jerking motion magnitude scores.<br />
 [64] meanFreqBodyAccelerometerJerkMagnigudeStd<br />
-Variable calculates the mean of the standard deviation of the body accelerometer jerking motion magnitude scores.<br />
+Variable calculates the mean of the standard deviation of the frequency of the body accelerometer jerking motion magnitude scores.<br />
 [65] meanFreqBodyGyroscopeMagnitudeMean<br />
-Variable calculates the mean of the mean body gyroscope magnitude scores.<br />
+Variable calculates the mean of the mean frequency body gyroscope magnitude scores.<br />
 [66] meanFreqBodyGyroscopeMagnitudeStd<br />
-Variable calculates the mean of the standard deviation of the body gyroscope magnitude scores.<br />
+Variable calculates the mean of the standard deviation of the frequency of the body gyroscope magnitude scores.<br />
 [67] meanFreqBodyGyroscopeJerkMagnitudeMean<br />
-Variable calculates the mean of the mean body gyroscope jerking motion magnitude scores.<br />
+Variable calculates the mean of the mean frequency of the body gyroscope jerking motion magnitude scores.<br />
 [68] meanFreqBodyGyroscopeJerkMagnitudeStd<br />
-Variable calculates the mean of the standard deviation of the body gyroscope jerking motion magnitude scores.<br />
+Variable calculates the mean of the standard deviation of the frequency of the of the body gyroscope jerking motion magnitude scores.<br />
+[69] meanFreqBodyGyroscopeJerkMagnitudeMeanFreq<br />
+Variable calculates the mean of the mean frequency of the body gyroscope jerking motion mean frequency.
