@@ -1,4 +1,5 @@
 # Readme.md - Getting and Cleaning Data — Course Project
+This file provides the following: 1)Assignment Details, 2) Variable Selection Discussion, and 3) R-script Discussion.
 ## Assignment Details
 This section provides the background for the assignment. The original text can be found at  https://class.coursera.org/getdata-031/human_grading/view/courses/975115/assessments/3/submissions <br />
 <br >
@@ -20,10 +21,15 @@ You should create one R script called run_analysis.R that does the following.<br
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ## Variable Selection Discussion
-
-
+This section discusses the variable selection for the final tidy data file. As stated in the assignment instructions above, the specifications as for a tidy data file that includes the “average of each variable for each activity.” Moreover, the specifications state only the measurements on the mean and stand deviation for each measurement be included in the data set. <br />
+<br />
+There are multiple ways in which “only the measurements on the mean and stand deviation for each measurement” might be defined. For duplication purposes the following rules should be applied when selecting mean and standard deviation variables. Variable names are found in the features.txt file.<br />
+1. Variable names include either mean or std. <br />
+2. Variable names do not include angle. <br />
+<br />
+The angle variables were excluded. Based on the information in the features_info.txt file these variables deal with the angle between variables. For the tidy data set it was decided that just the time, magnitude and frequency of measurements along the x, y and z axial dimensions would be included.
 ## R-Script Discussion
-This section provides an explanation of the different parts of the R-script. The discussion is broken down into the following subsections: 1) Loading and Subsetting Activity Data; 2) Loading Training Activities and Subjects; and 3) Build and Write Tidy Data.
+This section provides an explanation of the different parts of the R-script. The discussion is broken down into the following subsections: 1) Loading and Subsetting Activity Data, 2) Loading Training Activities and Subjects, and 3) Build and Write Tidy Data.
 ### 1) Loading and Subsetting Activity Data
 Data from the train_X and test_X data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command.<br /> 
 <br />
