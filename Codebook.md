@@ -127,7 +127,7 @@ Variable calculates the mean of the mean body gyroscope jerking motion scores. <
 Base unit is magnitude — calculation of magnitude is discussed above.<br />
 Variable calculates the mean of the standard deviation of the body gyroscope jerking motion scores. <br />
 [43] meanFreqxaxisBodyAccelerometerMean<br />
-Variable calculates the mean of the mean frequency of body accelerometer time scores along the x axial dimension.<br />                               
+Variable calculates the mean of the mean frequency of body accelerometer time scores along the x axial dimension.<br />
 [44] meanFreqyaxisBodyAccelerometerMean<br />
 Variable calculates the mean of the mean frequency of body accelerometer time scores along the y axial dimension.<br />
 [45] meanFreqzaxisBodyAccelerometerMean<br />
