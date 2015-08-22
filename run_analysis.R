@@ -14,7 +14,7 @@ train_test_X <- rbind(train_X, test_X)
 mean_std_X <- train_test_X[c(1:6,41:46,81:86,121:126,161:166,201:202,
                              214:215,227:228,240:241,253:254,266:271,
                              345:350,424:429,503:504,516:517,529:530,
-                             542:543)]
+                             542:543,552,555:561)]
 
 ## Rename the columns in the mean_std_X dataframe to something that is easier to understand the meaning of
 names(mean_std_X) <- c("xaxisBodyAccelerometerMean", "yaxisBodyAccelerometerMean", "zaxisBodyAccelerometerMean",
@@ -41,7 +41,7 @@ names(mean_std_X) <- c("xaxisBodyAccelerometerMean", "yaxisBodyAccelerometerMean
                        "freqBodyAccelerometerMagnitudeMean", "freqBodyAccelerometerMagnitudeStd",
                        "freqBodyAccelerometerJerkMagnitudeMean", "freqBodyAccelerometerJerkMagnitudeStd",
                        "freqBodyGyroscopeMagnitudeMean", "freqBodyGyroscopeMagnitudeStd",
-                       "freqBodyGyroscopeJerkMagnitudeMean", "freqBodyGyroscopeJerkMagnitudeStd"
+                       "freqBodyGyroscopeJerkMagnitudeMean", "freqBodyGyroscopeJerkMagnitudeStd", "freqBodyGyroscopeJerkMagnitudeMeanFreq"
                       )
 
 ## Read the test and training activity type datasets into dataframes
@@ -152,7 +152,8 @@ final_data <- summarize(activity, meanXaxisBodyAccelerometerMean = mean(xaxisBod
                                   meanFreqBodyGyroscopeMagnitudeMean = mean(freqBodyGyroscopeMagnitudeMean),
                                   meanFreqBodyGyroscopeMagnitudeStd = mean(freqBodyGyroscopeMagnitudeStd),
                                   meanFreqBodyGyroscopeJerkMagnitudeMean = mean(freqBodyGyroscopeJerkMagnitudeMean),
-                                  meanFreqBodyGyroscopeJerkMagnitudeStd = mean(freqBodyGyroscopeJerkMagnitudeStd))
+                                  meanFreqBodyGyroscopeJerkMagnitudeStd = mean(freqBodyGyroscopeJerkMagnitudeStd),
+                                  meanFreqBodyGyroscopeJerkMagnitudeMeanFreq = mean(freqBodyGyroscopeJerkMagnitudeMeanFreq))
 
 ## write text output 
 write.table(final_data, file = "./courseproject.txt", row.name=FALSE)
