@@ -29,15 +29,15 @@ There are multiple ways in which “only the measurements on the mean and stand 
 <br />
 The angle variables were excluded. Based on the information in the features_info.txt file, these variables deal with the angle between variables. For the tidy data set it was decided that just the time, magnitude and frequency of measurements along the x, y and z axial dimensions would be included.
 ## R-Script
-The R-script section provides an explanation of the different parts of the R-script. The discussion is broken down into the following subsections: 1) Loading and Subsetting Activity Data, 2) Loading Training Activities and Subjects, and 3) Build and Write Tidy Data.
+The R-script section provides an explanation of the different parts of the R-script. The discussion is broken down into the following subsections: 1) Loading and subsetting activity data, 2) Loading activities types and subject data, and 3) building and writing the tidy data file.
 ### 1) Loading and Subsetting Activity Data
-Data from the train_X and test_X data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command.<br /> 
+The activity data from the train_X and test_X data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command.<br /> 
 <br />
-The resulting dataframe was then subsetted based on the variable selection criteria discussed above. The column number used to code the subset are found in the features.txt file provided in the assignment. <br />
+The resulting dataframe was then subsetted based on the variable selection criteria discussed above. The column numbers used to code the subset where found in the features.txt file provided with the assignment. <br />
 <br />
 The dataframe column names where then modified to make them more readable using the names command.<br />   
 ### 2) Loading Training Activities and Subjects
-Data from the train_y and test_y data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command. The dataframe column name was then renamed to “activity_type” using in the name command.<br />
+The activity types data from the train_y and test_y data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command. The dataframe column name was then renamed to “activity_type” using in the name command.<br />
 <br />
 Next, ten the numeric indicators where converted to words. To do so, “activity_type” is first converted from numeric to character. Then, 1 is converted to ”WALKING”, 2 is converted to "WALKING_UPSTAIRS" 3 is converted to ”WALKING_DOWNSTAIRS" 3 is converted to ”SITTING” 5 is converted to "STANDING" and 6 is converted to "LAYING”.<br />
 <br />
