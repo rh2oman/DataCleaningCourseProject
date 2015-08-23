@@ -29,26 +29,26 @@ There are multiple ways in which “only the measurements on the mean and stand 
 <br />
 The angle variables were excluded. Based on the information in the features_info.txt file, these variables deal with the angle between variables. For the tidy data set it was decided that just the time, magnitude and frequency of measurements along the x, y and z axial dimensions would be included.
 ## R-Script
-The R-script section provides an explanation of the different parts of the R-script. The discussion is broken down into the following subsections: 1) Loading and subsetting activity data, 2) Loading activities types and subject data, and 3) building and writing the tidy data file.
+The R-script section provides an explanation of the different parts of the R-script. The discussion is broken down into the following subsections: 1) Loading and subsetting activity data, 2) Loading activity types and subject data, and 3) building and writing the tidy data file.
 ### 1) Loading and Subsetting Activity Data
 The activity data from the train_X and test_X data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command.<br /> 
 <br />
 The resulting dataframe was then subsetted based on the variable selection criteria discussed above. The column numbers used to code the subset where found in the features.txt file provided with the assignment. <br />
 <br />
 The dataframe column names where then modified to make them more readable using the names command.<br />   
-### 2) Loading Training Activities and Subjects
+### 2) Loading Activity Types and Subject Data
 The activity types data from the train_y and test_y data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command. The dataframe column name was then renamed to “activity_type” using in the name command.<br />
 <br />
-Next, ten the numeric indicators where converted to words. To do so, “activity_type” is first converted from numeric to character. Then, 1 is converted to ”WALKING”, 2 is converted to "WALKING_UPSTAIRS" 3 is converted to ”WALKING_DOWNSTAIRS" 3 is converted to ”SITTING” 5 is converted to "STANDING" and 6 is converted to "LAYING”.<br />
+Next, the numeric indicators where converted to words. To do so, “activity_type” was first converted from numeric to character. Then, 1 was converted to ”WALKING”, 2 was converted to "WALKING_UPSTAIRS" 3 was converted to ”WALKING_DOWNSTAIRS" 4 was converted to ”SITTING” 5 was converted to "STANDING" and 6 was converted to "LAYING”.<br />
 <br />
-Next, the R-script reads the data from the train_sub and test_sub data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command.The dataframe column name was then renamed to “subject” using in the name command.<br />
+Next, the subject data from the train_sub and test_sub data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command.The dataframe column name was then renamed to “subject” using in the name command.<br />
 <br />
-Lastly, cbind is used, creating a complete dataframe that binds the columns from the subject, activity_type, and activity dataframes.<br />
+The cbind command was then used to create a complete dataframe. The bind command binds the columns from the subject, activity_type, and activity dataframes.<br />
 <br />
-### 3) Build and Write Tidy Data.
+### 3) Building and Writing Tidy Data File.
 The dplyr library is used to build the tidy data set. <br />
 <br />
-To create the tidy data dataframe, the “subject” and “activity_type” variables in the complete dataframe are grouped using the group_by command. The summarize command is then applied using the newly created group and selecting the mean of each column in complete dataframe. <br />
+To create the tidy dataframe, the “subject” and “activity_type” variables in the complete dataframe were first grouped using the group_by command. Next, the summarize command was applied using the newly created group and selecting the mean of each column in complete dataframe. <br />
 <br />
 Finally, the write.table command is used to create the output file.
 
