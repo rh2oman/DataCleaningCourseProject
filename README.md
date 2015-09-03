@@ -34,7 +34,7 @@ The R-script section provides an explanation of the different parts of the run_a
 The features.txt file was used to determine what variables to select. A data table was created containing the variable number and name. Grep was then used to identify the variables that included mean and std in the variable name and a list of the those variable numbers was created.<br /><br/>
 A list of the variable names was also created. The variable names where then altered to make them more readable using the sub command.
 ### 2) Loading Activity Data
-The activity data from the train_X and test_X data sets were each loaded into separate dataframes. The variables to load where specified using the the variable number list build using the information in the features.txt file. The rows of the two dataframes were then combined into a single dataframe using the rbind command.
+The activity data from the train_X and test_X data sets were each loaded into separate dataframes. Which variables to load where specified using the the variable list built from features.txt file. The rows of the two dataframes were then combined into a single dataframe using the rbind command.
 ### 2) Loading Activity Types and Subject Data
 The activity types data from the train_y and test_y data sets were each loaded into separate dataframes. The rows of the two dataframes were then combined into a single dataframe using the rbind command. The dataframe column name was then renamed to “activity_type” using in the name command.<br />
 <br />
