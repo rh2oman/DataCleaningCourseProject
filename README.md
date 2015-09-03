@@ -46,7 +46,7 @@ Next, the subject data from the train_sub and test_sub data sets were each loade
 The cbind command was then used to create a complete_data dataframe. The cbind command binds the columns from the subject, activity_type, and activity dataframes.<br />
 <br />
 ### 3) Building and Writing Tidy Data File.
-To create the tidy data file the “subject” and “activity_type” variables in the complete_data dataframe were first changed to factors. The melt function was then used to transpose the dataframe into four columns including: subject, activity_type, variable name, and the value. The dcast function was then used to build the end product with subject, activity and each individual variable forming the columns. The mean of the recorded values for each activity type are recorded for each row.<br /> <br />
-Before writing the tidy data the original variable names are changed indicating that the values are the means of the recorded scores.<br /><br />
+To create the tidy data file the “subject” and “activity_type” variables in the complete_data dataframe were first changed to factors. The melt function was then used to transpose the dataframe into four columns including: subject, activity_type, variable name, and the value. The dcast function was then used to build the end product with subject, activity and each individual variable forming the columns. The mean of the values by subject and activity is the recorded value.<br /> <br />
+Before writing the tidy data the original variable names were changed to indicate that the values are the means of the recorded scores.<br /><br />
 Finally, the write.table command is used to create the output file.
 
