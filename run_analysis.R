@@ -1,48 +1,54 @@
+## set working directory
 setwd("/Users/waterman/Documents/Data Science Courses/Getting and Cleaning Data/Project")
 
-## Read the test and training Activity Type datasets into dataframes
-train_X <- read.table ("./UCI HAR Dataset/train/X_train.txt", header=F, fill=T)
-test_X <- read.table("./UCI HAR Dataset/test/X_test.txt", header=F, fill=T)
+## load libraries
+library (data.table)
+library (dplyr)
+library (reshape2)
+
+## features.txt file to findout what variables to load
+features <- read.table("./UCI HAR Dataset/features.txt" ,stringsAsFactors = FALSE)
+## set the names of the features table
+names(features) <- c("variableNum", "variableName")
+
+## find variables that are means and standard deviations with grep
+## place the names of these variables into meanStdVariables dataframe
+meanStd_variables<-grep("mean\\(\\)|std\\(\\)",features[,2])
+meanStd_variables_names <- features[meanStd_variables,2]
+
+## modify variable names
+## substitue t with time and f with frequency
+meanStd_variables_names = sub('tBody', 'timeBody', meanStd_variables_names)
+meanStd_variables_names = sub('tGravity', 'timeGravity', meanStd_variables_names)
+meanStd_variables_names = sub('fBody', 'freqBody', meanStd_variables_names)
+meanStd_variables_names = sub('fGravity', 'freqGravity', meanStd_variables_names)
+## substitute -mean() with Mean and -std() with Std
+meanStd_variables_names = sub('-mean', 'Mean', meanStd_variables_names)
+meanStd_variables_names = sub('-std', 'Std', meanStd_variables_names)
+## substitute Acc with Accelerometer, Mag with Magnitude and Gyro with Gyroscope
+meanStd_variables_names = sub('Acc', 'Accelerometer', meanStd_variables_names)
+meanStd_variables_names = sub('Mag', 'Magnitude', meanStd_variables_names)
+meanStd_variables_names = sub('Gyro', 'Gyroscope', meanStd_variables_names)
+## set axis 
+meanStd_variables_names = sub('X', 'Xaxis', meanStd_variables_names)
+meanStd_variables_names = sub('Y', 'Yaxis', meanStd_variables_names)
+meanStd_variables_names = sub('Z', 'Zaxis', meanStd_variables_names)
+## remove () and bodyBody
+meanStd_variables_names <- sub('[-()]', '', meanStd_variables_names)
+meanStd_variables_names <- sub('BodyBody', 'Body', meanStd_variables_names)
+
+
+## Read the columns specified in the meanStdVariables dataframe from the 
+## training and test Activity datasets into dataframes
+train_X <- read.table ("./UCI HAR Dataset/train/X_train.txt", header=F, fill=T)[meanStd_variables]
+test_X <- read.table("./UCI HAR Dataset/test/X_test.txt", header=F, fill=T)[meanStd_variables]
 
 ## Merge train and test Activity Type datasets together into one dataframe
 ## rbind combineds the rows of the dataframes together
-train_test_X <- rbind(train_X, test_X)
+meanStd <- rbind(train_X, test_X)
 
-## Subset with only means and standard deviations
-## Using variable name and position from features.txt to select columns to keep
-## See README.txt for more detail
-mean_std_X <- train_test_X[c(1:6,41:46,81:86,121:126,161:166,201:202,
-                             214:215,227:228,240:241,253:254,266:271,
-                             345:350,424:429,503:504,516:517,529:530,
-                             542:543,552,555:561)]
-
-## Rename the columns in the mean_std_X dataframe to something that is easier to understand the meaning of
-names(mean_std_X) <- c("xaxisBodyAccelerometerMean", "yaxisBodyAccelerometerMean", "zaxisBodyAccelerometerMean",
-                       "xaxisBodyAccelerometerStd", "yaxisBodyAccelerometerStd", "zaxisBodyAccelerometerStd",
-                       "xaxisGravityAccelerometerMean", "yaxisGravityAccelerometerMean", "zaxisGravityAccelerometerMean",
-                       "xaxisGravityAccelerometerStd", "yaxisGravityAccelerometerStd", "zaxisGravityAccelerometerStd",
-                       "xaxisBodyAccelerometerJerkMean", "yaxisBodyAccelerometerJerkMean", "zaxisBodyAccelerometerJerkMean",
-                       "xaxisBodyAccelerometerJerkStd", "yaxisBodyAccelerometerJerkStd", "zaxisBodyAccelerometerJerkStd",
-                       "xaxisBodyGyroscopeMean", "yaxisBodyGyroscopeMean","zaxisBodyGyroscopeMean",
-                       "xaxisBodyGyroscopeStd", "yaxisBodyGyroscopeStd", "zaxisBodyGyroscopeStd",
-                       "xaxisBodyGyroscopeJerkMean", "yaxisBodyGyroscopeJerkMean", "zaxisBodyGyroscopeJerkMean",
-                       "xaxisBodyGyroscopeJerkStd", "yaxisBodyGyroscopeJerkStd", "zaxisBodyGyroscopeJerkStd",
-                       "bodyAccelerometerMagnitudeMean", "bodyAccelerometerMagnitudeStd",
-                       "gravityAccelerometerMagnitudeMean", "gravityAccelerometerMagnitudeStd",
-                       "bodyAccelerometerJerkMagnitudeMean", "bodyAccelerometerJerkMagnitudeStd",
-                       "bodyGyroscopeMagnitudeMean", "bodyGyroscopeMagnitudeStd",
-                       "bodyGyroscopeJerkMagnitudeMean", "bodyGyroscopeJerkMagnitudeStd",
-                       "freqxaxisBodyAccelerometerMean", "freqyaxisBodyAccelerometerMean", "freqzaxisBodyAccelerometerMean",
-                       "freqxaxisBodyAccelerometerStd", "freqyaxisBodyAccelerometerStd", "freqzaxisBodyAccelerometerStd",
-                       "freqxaxisBodyAccelerometerJerkMean", "freqyaxisBodyAccelerometerJerkMean", "freqzaxisBodyAccelerometerJerkMean",
-                       "freqxaxisBodyAccelerometerJerkStd", "freqyaxisBodyAccelerometerJerkStd", "freqzaxisBodyAccelerometerJerkStd",
-                       "freqxaxisBodyGyroscopeMean", "freqyaxisBodyGyroscopeMean", "freqzaxisBodyGyroscopeMean",
-                       "freqxaxisBodyGyroscopeStd", "freqyaxisBodyGyroscopeStd", "freqzaxisBodyGyroscopeStd",
-                       "freqBodyAccelerometerMagnitudeMean", "freqBodyAccelerometerMagnitudeStd",
-                       "freqBodyAccelerometerJerkMagnitudeMean", "freqBodyAccelerometerJerkMagnitudeStd",
-                       "freqBodyGyroscopeMagnitudeMean", "freqBodyGyroscopeMagnitudeStd",
-                       "freqBodyGyroscopeJerkMagnitudeMean", "freqBodyGyroscopeJerkMagnitudeStd", "freqBodyGyroscopeJerkMagnitudeMeanFreq"
-                      )
+## Rename the columns in the meanStd dataframe to something easier to understand
+names(meanStd) <- c(meanStd_variables_names)
 
 ## Read the test and training activity type datasets into dataframes
 train_y <- read.table ("./UCI HAR Dataset/train/y_train.txt", header=F, fill=T)
@@ -58,12 +64,12 @@ names(train_test_y) <- c("activity_type")
 ## First convert from numeric to character type
 train_test_y$activity_type <- as.character(train_test_y$activity_type)
 ## Second reset each activity type with the words instead of code number.
-train_test_y$activity_type[train_test_y$activity_type == "1"] <- "WALKING"
-train_test_y$activity_type[train_test_y$activity_type == "2"] <- "WALKING_UPSTAIRS"
-train_test_y$activity_type[train_test_y$activity_type == "3"] <- "WALKING_DOWNSTAIRS"
-train_test_y$activity_type[train_test_y$activity_type == "4"] <- "SITTING"
-train_test_y$activity_type[train_test_y$activity_type == "5"] <- "STANDING"
-train_test_y$activity_type[train_test_y$activity_type == "6"] <- "LAYING"
+train_test_y$activity_type[train_test_y$activity_type == "1"] <- "Walking"
+train_test_y$activity_type[train_test_y$activity_type == "2"] <- "WalkingUpstairs"
+train_test_y$activity_type[train_test_y$activity_type == "3"] <- "WalkingDownstairs"
+train_test_y$activity_type[train_test_y$activity_type == "4"] <- "Sitting"
+train_test_y$activity_type[train_test_y$activity_type == "5"] <- "Standing"
+train_test_y$activity_type[train_test_y$activity_type == "6"] <- "Laying"
 
 ## Read the test and training Subject datasets into dataframes
 train_sub <- read.table ("./UCI HAR Dataset/train/subject_train.txt", header=F, fill=T)
@@ -78,82 +84,27 @@ names(train_test_sub) <- c("subject")
 
 ## Create a new dataframe that binds the merged testing and training data with activity type and subject
 ## combined the column from the one dataframe to the second dataframe
-combined_data <- cbind(train_test_sub, train_test_y, mean_std_X)
+combined_data <- cbind(train_test_sub, train_test_y, meanStd)
 
-## building the final tidy dataset using dplyr and summarize
-library(dplyr)
-## Make an Activity group using the Activity_Type
-## Subject <- group_by(combined_data, Subject)
-activity <- group_by(combined_data, subject, activity_type)
-## create the final tidy data set using the summarize command the activity group
-## provides a new name for each column denoting it is the mean of the original column
-final_data <- summarize(activity, meanXaxisBodyAccelerometerMean = mean(xaxisBodyAccelerometerMean), 
-                                  meanYaxisBodyAccelerometerMean = mean(yaxisBodyAccelerometerMean), 
-                                  meanZaxisBodyAccelerometerMean = mean(zaxisBodyAccelerometerMean),
-                                  meanXaxisBodyAccelerometerStd = mean(xaxisBodyAccelerometerStd), 
-                                  meanYaxisBodyAccelerometerStd = mean(yaxisBodyAccelerometerStd), 
-                                  meanZaxisBodyAccelerometerStd = mean(zaxisBodyAccelerometerStd),
-                                  meanXaxisGavityAccelerometerMean = mean(xaxisGravityAccelerometerMean), 
-                                  meanYaxisGravityAccelerometerMean = mean(yaxisGravityAccelerometerMean), 
-                                  meanZaxisGravityAccelerometerMean = mean(zaxisGravityAccelerometerMean),
-                                  meanXaxisBravityAccelerometerStd = mean(xaxisGravityAccelerometerStd),
-                                  meanYaxisGravityAccelerometerStd = mean(yaxisGravityAccelerometerStd),
-                                  meanZaxisGravityAccelerometerStd = mean(zaxisGravityAccelerometerStd),
-                                  meanXaxisBodyAccelerometerJerkMean = mean(xaxisBodyAccelerometerJerkMean),
-                                  meanYaxisBodyAccelerometerJerkMean = mean(yaxisBodyAccelerometerJerkMean), 
-                                  meanZaxisBodyAccelerometerJerkMean = mean(zaxisBodyAccelerometerJerkMean),
-                                  meanXxisBodyAccelerometerJerkStd = mean(xaxisBodyAccelerometerJerkStd),
-                                  meanYaxisBodyAccelerometerJerkStd = mean(yaxisBodyAccelerometerJerkStd),
-                                  meanZaxisBodyAccelerometerJerkStd = mean(zaxisBodyAccelerometerJerkStd),
-                                  meanXaxisBodyGyroscopeMean = mean(xaxisBodyGyroscopeMean),
-                                  meanYaxisBodyGyroscopeMmean = mean(yaxisBodyGyroscopeMean),
-                                  meanZaxisBodyGyroscopeMean = mean(zaxisBodyGyroscopeMean),
-                                  meanXaxisBodyGyrosopeStd = mean(xaxisBodyGyroscopeStd),
-                                  meanYaxisBodyGyrocopeStd = mean(yaxisBodyGyroscopeStd),
-                                  meanZaxisBodyGyroscopeStd = mean(zaxisBodyGyroscopeStd),
-                                  meanXaxisBodyGyroscopeJerkMean = mean(xaxisBodyGyroscopeJerkMean), 
-                                  meanYaxisBodyGyroscopeJerkMean = mean(yaxisBodyGyroscopeJerkMean),
-                                  meanZaxisBodyGyroscopeJerkMean = mean(zaxisBodyGyroscopeJerkMean),
-                                  meanXaxisBodyGyroscopeJerkStd = mean(xaxisBodyGyroscopeJerkStd),
-                                  meanYaxisBodyGyroscopeJerkStd = mean(yaxisBodyGyroscopeJerkStd),
-                                  meanZaxisBodyGyroscopeJerkStd = mean(zaxisBodyGyroscopeJerkStd),
-                                  meanBodyAccelerometermag_mean = mean(bodyAccelerometerMagnitudeMean),
-                                  meanBodyAccelerometermag_std = mean(bodyAccelerometerMagnitudeStd),
-                                  meanGravityAccelerometerMagnitudeMean = mean(gravityAccelerometerMagnitudeMean),
-                                  meanGravityAccelerometerMagnitudeStd = mean(gravityAccelerometerMagnitudeStd),
-                                  meanBodyAccelerometerJerkMagnitudeMean = mean(bodyAccelerometerJerkMagnitudeMean),
-                                  meanBodyAccelerometerJerkMagnitudeStd = mean(bodyAccelerometerJerkMagnitudeStd),
-                                  meanBodyGyroscopeMagnitudeMean = mean(bodyGyroscopeMagnitudeMean),
-                                  meanBodyGyroscopeMagnitudeStd = mean(bodyGyroscopeMagnitudeStd),
-                                  meanBodyGyroscopeJerkMagnitudeMean = mean(bodyGyroscopeJerkMagnitudeMean),
-                                  meanBodyGyroscopeJerkMagnitudeStd = mean(bodyGyroscopeJerkMagnitudeStd),
-                                  meanFreqxaxisBodyAccelerometerMean = mean(freqxaxisBodyAccelerometerMean),
-                                  meanFreqyaxisBodyAccelerometerMean = mean(freqyaxisBodyAccelerometerMean),
-                                  meanFreqzaxisBodyAccelerometerMean = mean(freqzaxisBodyAccelerometerMean),
-                                  meanFreqxaxisBodyAccelerometerStd = mean(freqxaxisBodyAccelerometerStd),
-                                  meanFreqyaxisBodyAccelerometerStd = mean(freqyaxisBodyAccelerometerStd),
-                                  meanFreqzaxisBodyAccelerometerStd = mean(freqzaxisBodyAccelerometerStd),
-                                  meanFreqxaxisBodyAccelerometerJerkMean = mean(freqxaxisBodyAccelerometerJerkMean),
-                                  meanFreqyaxisBodyAccelerometerJerkMean = mean(freqyaxisBodyAccelerometerJerkMean),
-                                  meanFreqzaxisBodyAccelerometerJerkMean = mean(freqzaxisBodyAccelerometerJerkMean),
-                                  meanFreqxaxisBodyAccelerometerJerkStd = mean(freqxaxisBodyAccelerometerJerkStd),
-                                  meanFreqyaxisBodyAccelerometerJerkStd = mean(freqyaxisBodyAccelerometerJerkStd),
-                                  meanFreqzaxisBodyAccelerometerJerkStd = mean(freqzaxisBodyAccelerometerJerkStd),
-                                  meanFreqxaxisBodyGyroscopeMean = mean(freqxaxisBodyGyroscopeMean), 
-                                  meanFreqyaxisBodyGyroscopeMean = mean(freqyaxisBodyGyroscopeMean),
-                                  meanFreqzaxisBodyGyroscopeMean = mean(freqzaxisBodyGyroscopeMean),
-                                  meanFreqxaxisBodyGyroscopeStd = mean(freqxaxisBodyGyroscopeStd),
-                                  meanFreqyaxisBodyGyroscopeStd = mean(freqyaxisBodyGyroscopeStd),
-                                  meanFreqzaxisBodyGyroscopeStd = mean(freqzaxisBodyGyroscopeStd),
-                                  meanFreqBodyAccelerometerMagnitudeMean = mean(freqBodyAccelerometerMagnitudeMean),
-                                  meanFreqBodyAccelerometerMagnitudeStd = mean(freqBodyAccelerometerMagnitudeStd),
-                                  meanFreqBodyAccelerometerJerkMagnitudeMean = mean(freqBodyAccelerometerJerkMagnitudeMean),
-                                  meanFreqBodyAccelerometerJerkMagnigudeStd = mean(freqBodyAccelerometerJerkMagnitudeStd),
-                                  meanFreqBodyGyroscopeMagnitudeMean = mean(freqBodyGyroscopeMagnitudeMean),
-                                  meanFreqBodyGyroscopeMagnitudeStd = mean(freqBodyGyroscopeMagnitudeStd),
-                                  meanFreqBodyGyroscopeJerkMagnitudeMean = mean(freqBodyGyroscopeJerkMagnitudeMean),
-                                  meanFreqBodyGyroscopeJerkMagnitudeStd = mean(freqBodyGyroscopeJerkMagnitudeStd),
-                                  meanFreqBodyGyroscopeJerkMagnitudeMeanFreq = mean(freqBodyGyroscopeJerkMagnitudeMeanFreq))
+## building the final tidy dataset 
+## convert activity_type and subject to a factor
+combined_data$activity_type<-factor(combined_data$activity_type)
+combined_data$subject<-as.factor(combined_data$subject)
+## melt combined data to long format
+combined_data_melt<-melt(combined_data,id = c("subject","activity_type"))
+combined_data_melt$value<-as.numeric(combined_data_melt$value)
+
+##calculate the mean of each variable for each subject and activity_type
+combined_data_mean <-dcast(combined_data_melt,subject + activity_type ~ variable, mean)
+
+## build new list of variable names for tidy dataset
+tidy_variables_names <- meanStd_variables_names
+## rename columns for accuracy
+tidy_variables_names = sub('time', 'meanOfTime', tidy_variables_names)
+tidy_variables_names = sub('freq', 'meanOfFreq', tidy_variables_names)
+
+## Rename the columns in the combined_data_mean dataframe to something easier to understand
+names(combined_data_mean) <- c("subject", "activityType", tidy_variables_names)
 
 ## write text output 
-write.table(final_data, file = "./courseproject.txt", row.name=FALSE)
+write.table(combined_data_mean, file = "./courseproject.txt", row.name=FALSE)
